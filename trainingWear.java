@@ -1,4 +1,4 @@
 class training{
 
-    
+    main
 }
