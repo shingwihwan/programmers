@@ -7,6 +7,7 @@ class Solution{
         for(int i = 0; i < nums.length; i++){
             for(int j = 0; j < ponketmonPick; j++){
                 System.out.println(nums[i]);
+                System.out.println(i + 1);
             }
         }
 }
