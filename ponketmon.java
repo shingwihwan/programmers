@@ -10,4 +10,5 @@ class Solution{
                 System.out.println(i + 1);
             }
         }
+    }
 }
