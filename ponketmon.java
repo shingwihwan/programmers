@@ -1,6 +1,6 @@
 class Solution{
-    
-    public static int main(String[] args) {
+
+    public static void main(String[] args) {
         int[] nums = {3,3,3,2,2,4};
         int ponketmonPick = (nums.length / 2);
         System.out.println(ponketmonPick);
@@ -10,7 +10,5 @@ class Solution{
                 System.out.println(nums[i]);
             }
         }
-
-        return 3;
     }
 }
