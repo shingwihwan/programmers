@@ -1,7 +1,11 @@
+import java.util.HashSet;
+
 class Solution{
 
     public static void main(String[] args) {
         int[] nums = {3,3,3,2,2,4};
+        HashSet<Integer> save = new HashSet<>();
+
         int answer = 0;
         int ponketmonPick = (nums.length / 2);
         // System.out.println("pick : " + ponketmonPick);
