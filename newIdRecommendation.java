@@ -10,8 +10,9 @@ class RecommendNewId {
     // 7단계 new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
 
     public static void main(String[] args) {
-        String new_id = "...!@BaT#*..y.abcdefghijklm";
+        String new_id = "...!@BaT#*.. y.abcdefghijklm";
         String RecommendId = "";
+        final int FIX_STR_LENGTH = 15;
 
         // Step1 모든 대문자를 소문자로 치환
         RecommendId = new_id.toLowerCase();
@@ -19,8 +20,19 @@ class RecommendNewId {
 
         // Step2 알파벳 소문자, 숫자, 빼기, 밑줄, 마침표 제외 모든 문자 제거
         int existSpace = RecommendId.indexOf(" ");
-        System.out.println(existSpace);
 
+        // Step5 new_id가 빈 문자열이라면, new_id에 "a"를 대입합니다.
+        String test = RecommendId.replaceAll(" ", "a");
+
+        // Step6 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
+        int len = new_id.length();
+        if(len > FIX_STR_LENGTH){
+            System.out.println("ehy");
+            String subStr = new_id.substring(0, FIX_STR_LENGTH);
+            System.out.println(subStr);
+        } else {
+            System.out.println("choe");
+        }
     }
     
 }
