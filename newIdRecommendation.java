@@ -16,7 +16,7 @@ class RecommendNewId {
 
         // Step1 모든 대문자를 소문자로 치환
         RecommendId = new_id.toLowerCase();
-        System.out.println("step1 : " + RecommendId); 
+        System.out.println("step1 : " + RecommendId);  
 
         // Step2 알파벳 소문자, 숫자, 빼기, 밑줄, 마침표 제외 모든 문자 제거
         // 이런식으로 해결하게 되면 중간에 빈 문자열 또한 한번에 해결해버려서 문제의 요지를 벗어나는 것 같다. 다른 해결방법을 찾아야할듯.
