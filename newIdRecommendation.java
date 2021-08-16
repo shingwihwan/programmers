@@ -19,10 +19,24 @@ class RecommendNewId {
         System.out.println("step1 : " + RecommendId);
 
         // Step2 알파벳 소문자, 숫자, 빼기, 밑줄, 마침표 제외 모든 문자 제거
-        int existSpace = RecommendId.indexOf(" ");
+        String id = "";
+        for(int i = 0; i < RecommendId.length(); i++){
+            char ch = RecommendId.charAt(i);
+            if(ch >= 'a' && ch <= 'z'){
+                id += String.valueOf(ch);
+            } else if (ch >= '0'  && ch <= '9'){
+                id += String.valueOf(ch);
+            } else if (ch == '.' && ch == '_' && ch == '-'){
+                id += String.valueOf(ch);
+            }
+        }
+        RecommendId = id;
+
+        System.out.println(RecommendId);
 
         // Step5 new_id가 빈 문자열이라면, new_id에 "a"를 대입합니다.
         String test = RecommendId.replaceAll(" ", "a");
+        System.out.println("test : " + test);
 
         // Step6 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
         int len = new_id.length();
