@@ -43,26 +43,62 @@ class RecommendNewId {
         System.out.println("step3 : " + RecommendId);
 
         // Step4 new_id에서 마침표(.)가 처음이나 끝에 위치한다면 제거합니다.
-        System.out.println(RecommendId.substring(15));
-        System.out.println(RecommendId.length());
-        System.out.println(RecommendId.lastIndexOf("."));
-        System.out.println(RecommendId.indexOf("."));
         // 끝자리에 "."가 왔을때의 index 번호와 추천 아이디의 길이가 같거나 첫자리에 "."가 왔을때
-        if(RecommendId.lastIndexOf(".") == RecommendId.length() || RecommendId.indexOf(".") == 0){
-            System.out.println("dm");
+        if(RecommendId.indexOf(".") == 0){
+            RecommendId = RecommendId.substring(1, RecommendId.length());
+        } else if(RecommendId.lastIndexOf(".") == RecommendId.length()) {
+            RecommendId = RecommendId.substring(0, RecommendId.length() - 1);
         }
 
         // Step5 new_id가 빈 문자열이라면, new_id에 "a"를 대입합니다.
-        String test = RecommendId.replaceAll(" ", "a");
-        System.out.println("step5 : " + test);
+        // 문제를 잘못 이해했나보다. 중간에 공백이 발생했을때 a를 넣는 것이 아니라..빈 문자열이면..
+        // String test = RecommendId.replaceAll(" ", "a");
+        // System.out.println("step5 : " + test);
+        if(RecommendId.equals("")){
+            RecommendId = "a";
+        }
 
         // Step6 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
-        int len = new_id.length();
+        int len = RecommendId.length();
         if(len > FIX_STR_LENGTH){
-            String subStr = new_id.substring(0, FIX_STR_LENGTH);
-            System.out.println("step6 : " + subStr);
-        } else {
-            System.out.println("choe");
+            RecommendId = RecommendId.substring(0, FIX_STR_LENGTH);
+            System.out.println("step6 : " + RecommendId);
+            System.out.println(RecommendId.length());
+            System.out.println(RecommendId.substring(0, RecommendId.length()));
+            System.out.println(RecommendId.charAt(RecommendId.length() - 1));
+            if(RecommendId.substring(RecommendId.length() - 1) == "."){
+                RecommendId = RecommendId.substring(0 , RecommendId.length() - 1);
+            }
+        }
+
+        // Step7 7단계 new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
+        if(RecommendId.length() <= 2){
+            String lastChar = RecommendId.substring(RecommendId.length() - 1);
+            while(RecommendId.length() == 3){
+                RecommendId.concat(lastChar);
+            }
+        }
+
+        // 정규표현식으로 다른 분들이 한 것 첨부.
+        String answer = new_id.toLowerCase(); // 1단계
+
+        answer = answer.replaceAll("[^-_.a-z0-9]", ""); // 2단계
+        answer = answer.replaceAll("[.]{2,}", "."); // 3단계
+        answer = answer.replaceAll("^[.]|[.]$", "");    // 4단계
+        
+        if (answer.equals("")) {    // 5단계
+            answer += "a";
+        }
+
+        if (answer.length() >= 16) {     // 6단계
+            answer = answer.substring(0, 15);
+            answer = answer.replaceAll("[.]$","");
+        }
+
+        if (answer.length() <= 2) {  // 7단계
+            while (answer.length() < 3) {
+                answer += answer.charAt(answer.length()-1);
+            }
         }
     }
     
