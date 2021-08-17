@@ -19,7 +19,7 @@ class RecommendNewId {
         System.out.println("step1 : " + RecommendId);  
 
         // Step2 알파벳 소문자, 숫자, 빼기, 밑줄, 마침표 제외 모든 문자 제거
-        // 이런식으로 해결하게 되면 중간에 빈 문자열 또한 한번에 해결해버려서 문제의 요지를 벗어나는 것 같다. 다른 해결방법을 찾아야할듯.
+        // 이런식으로 해결하게 되면 중간에 빈 문자열이 있을때 공백없이 해결해버려서 문제의 요지를 벗어나는 것 같다. 다른 해결방법을 찾아야할듯.
         String id = "";
         for(int i = 0; i < RecommendId.length(); i++){
             char ch = RecommendId.charAt(i);
@@ -27,24 +27,40 @@ class RecommendNewId {
                 id += String.valueOf(ch);
             } else if (ch >= '0'  && ch <= '9'){
                 id += String.valueOf(ch);
-            } else if (ch == '.' && ch == '_' && ch == '-'){
+            } else if (ch == '.' || ch == '_' || ch == '-'){
                 id += String.valueOf(ch);
             }
         }
         RecommendId = id;
 
-        System.out.println(RecommendId);
+        System.out.println("step2 : " + RecommendId);
+
+        // Step3 new_id에서 마침표(.)가 2번 이상 연속된 부분을 하나의 마침표(.)로 치환합니다.
+        RecommendId = RecommendId.replace("..", ".");
+        while(RecommendId.contains("..")){
+            RecommendId = RecommendId.replace("..", ".");
+        }
+        System.out.println("step3 : " + RecommendId);
+
+        // Step4 new_id에서 마침표(.)가 처음이나 끝에 위치한다면 제거합니다.
+        System.out.println(RecommendId.substring(15));
+        System.out.println(RecommendId.length());
+        System.out.println(RecommendId.lastIndexOf("."));
+        System.out.println(RecommendId.indexOf("."));
+        // 끝자리에 "."가 왔을때의 index 번호와 추천 아이디의 길이가 같거나 첫자리에 "."가 왔을때
+        if(RecommendId.lastIndexOf(".") == RecommendId.length() || RecommendId.indexOf(".") == 0){
+            System.out.println("dm");
+        }
 
         // Step5 new_id가 빈 문자열이라면, new_id에 "a"를 대입합니다.
         String test = RecommendId.replaceAll(" ", "a");
-        System.out.println("test : " + test);
+        System.out.println("step5 : " + test);
 
         // Step6 new_id의 길이가 16자 이상이면, new_id의 첫 15개의 문자를 제외한 나머지 문자들을 모두 제거합니다.
         int len = new_id.length();
         if(len > FIX_STR_LENGTH){
-            System.out.println("ehy");
             String subStr = new_id.substring(0, FIX_STR_LENGTH);
-            System.out.println(subStr);
+            System.out.println("step6 : " + subStr);
         } else {
             System.out.println("choe");
         }
