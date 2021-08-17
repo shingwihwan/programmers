@@ -46,7 +46,7 @@ class RecommendNewId {
         // 끝자리에 "."가 왔을때의 index 번호와 추천 아이디의 길이가 같거나 첫자리에 "."가 왔을때
         if(RecommendId.indexOf(".") == 0){
             RecommendId = RecommendId.substring(1, RecommendId.length());
-        } else if(RecommendId.lastIndexOf(".") == RecommendId.length()) {
+        } else if(RecommendId.lastIndexOf(".") == RecommendId.length() - 1) {
             RecommendId = RecommendId.substring(0, RecommendId.length() - 1);
         }
 
@@ -66,18 +66,27 @@ class RecommendNewId {
             System.out.println(RecommendId.length());
             System.out.println(RecommendId.substring(0, RecommendId.length()));
             System.out.println(RecommendId.charAt(RecommendId.length() - 1));
-            if(RecommendId.substring(RecommendId.length() - 1) == "."){
+            if(RecommendId.substring(RecommendId.length() - 1).equals(".")){
                 RecommendId = RecommendId.substring(0 , RecommendId.length() - 1);
             }
         }
 
         // Step7 7단계 new_id의 길이가 2자 이하라면, new_id의 마지막 문자를 new_id의 길이가 3이 될 때까지 반복해서 끝에 붙입니다.
+        // 내가 푼것..틀린식. 왜 틀렸는지 생각.
+        // if(RecommendId.length() <= 2){
+        //     String lastChar = RecommendId.substring(RecommendId.length() - 1);
+        //     while(RecommendId.length() == 3){
+        //         RecommendId.concat(lastChar);
+        //     }
+        // }
+
         if(RecommendId.length() <= 2){
-            String lastChar = RecommendId.substring(RecommendId.length() - 1);
-            while(RecommendId.length() == 3){
-                RecommendId.concat(lastChar);
+            while (RecommendId.length() < 3){
+                RecommendId += RecommendId.charAt(RecommendId.length() - 1);
             }
         }
+
+
 
         // 정규표현식으로 다른 분들이 한 것 첨부.
         String answer = new_id.toLowerCase(); // 1단계
