@@ -1,9 +1,16 @@
 import java.util.HashSet;
 
-class Solution{
-
+public class ponketmon {
     public static void main(String[] args) {
-        int[] nums = {3,3,3,2,2,4};
+        int[] nums = {3, 3, 3, 2, 2, 4};
+        PonketmonSolve solv = new PonketmonSolve();
+        solv.solution(nums);
+    }
+}
+
+class PonketmonSolve {
+    public int solution (int[] nums) {
+
         HashSet<Integer> save = new HashSet<>();
 
         int answer = 0;
@@ -16,6 +23,7 @@ class Solution{
            }
             
         }
-        
+        System.out.println(nums);
+        return 0;
     }
 }
