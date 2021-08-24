@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class completion {
+public class Completion {
 
     static String gacha;
     public static void main(String[] args) {

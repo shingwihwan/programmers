@@ -3,7 +3,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.stream.Collectors;
 
-public class ponketmon {
+public class Ponketmon {
     public static void main(String[] args) {
         int[] nums = {3, 3, 3, 2, 2, 4};
         PonketmonSolve solv = new PonketmonSolve();
